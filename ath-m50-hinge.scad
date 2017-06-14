@@ -1,4 +1,5 @@
 use <MCAD/array/mirror.scad>
+use <MCAD/array/along_curve.scad>
 use <MCAD/shapes/2Dshapes.scad>
 include <MCAD/units/metric.scad>
 
@@ -17,6 +18,7 @@ hinge_pin_h = 10;
 
 bar_size = [23.87, 28, 7.45];
 bar_angle = 15;
+center_gap = 14;
 
 
 $fs = 0.4;
@@ -138,8 +140,20 @@ module fork ()
             }
 
             translate ([-bar_size[0], 0, bar_size[2] / 2])
+            mirror (Z)
+            ccube ([1.2, 0.4 * center_gap, 10], center = X);
+
+            translate ([-bar_size[0], -1, bar_size[2] / 2])
             rotate (-90, X)
             cylinder (d = 1.2, h = 0.3 * bar_size[1]);
+
+            translate ([-bar_size[0], 0, bar_size[2] / 2])
+            hull ()
+            mcad_linear_multiply (no = 2, separation = 10, axis = Z)
+            rotate (-30, Y)
+            translate ([0, 0, 2 / 2])
+            rotate (90, Y)
+            cylinder (d = 2, h = 6, center = true);
         }
     }
 }
@@ -153,7 +167,6 @@ module place_bar ()
 
 module bar ()
 {
-    center_gap = 14;
     cylinder_h = 7.6;
     cylinder_d1 = 14.23;
     cylinder_d2 = 13;
@@ -183,8 +196,6 @@ module bar ()
 
             cylinder (d = shaft_d, h = center_gap + epsilon * 2, center = true);
         }
-
-        /* hinge center bar */
     }
 }
 
