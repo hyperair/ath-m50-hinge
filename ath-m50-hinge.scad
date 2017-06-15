@@ -20,6 +20,12 @@ bar_size = [23.87, 28, 7.45];
 bar_angle = 15;
 center_gap = 14;
 
+/* wedge dimensions on z=0 plane */
+wedge_dimensions_z0 = [4, 2, 3];
+
+/* wedge dimensions on y=0 plane */
+wedge_dimensions_y0 = [4, 3, 3];
+
 
 $fs = 0.4;
 $fa = 1;
@@ -165,6 +171,16 @@ module place_bar ()
     children ();
 }
 
+module wedge_trapezoid (size)
+{
+    bottom = size[0];
+    top = size[1];
+    height = size[2];
+
+    linear_extrude (height = 10, center = true)
+    trapezoid (bottom = bottom, height = height, top = top);
+}
+
 module bar ()
 {
     cylinder_h = 7.6;
@@ -183,6 +199,23 @@ module bar ()
             mirror (X)
             ccube ([bar_size[0], center_gap, bar_size[2] + epsilon * 2],
                    center = Y);
+        }
+
+        /* wedge */
+        translate (
+            [
+                -(bar_size[0] - shaft_d / 2 - 5),
+                0,
+                bar_size[2] - wedge_dimensions_y0[0] / 2
+            ]
+        )
+        intersection () {
+            rotate (90, Z)
+            wedge_trapezoid (wedge_dimensions_z0);
+
+            rotate (90, X)
+            rotate (90, Z)
+            wedge_trapezoid (wedge_dimensions_y0);
         }
 
         /* hinge caps */
