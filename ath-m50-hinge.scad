@@ -145,13 +145,13 @@ module fork ()
                 ccube ([1.2, 0.2 * bar_size[1], 10]);
             }
 
-            translate ([-bar_size[0], 0, bar_size[2] / 2])
+            translate ([-bar_size[0], -1, bar_size[2] / 2])
             mirror (Z)
-            ccube ([1.2, 0.4 * center_gap, 10], center = X);
+            ccube ([1.2, 0.5 * center_gap + 1, 10], center = X);
 
             translate ([-bar_size[0], -1, bar_size[2] / 2])
             rotate (-90, X)
-            cylinder (d = 1.2, h = 0.3 * bar_size[1]);
+            cylinder (d = 2, h = 0.3 * bar_size[1]);
 
             translate ([-bar_size[0], 0, bar_size[2] / 2])
             hull ()
