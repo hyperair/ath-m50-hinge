@@ -187,7 +187,7 @@ module bar ()
     cylinder_d1 = 14.23;
     cylinder_d2 = 13;
 
-    shaft_d = 4.3;
+    shaft_d = 5.5;
 
     place_bar () {
         render ()
