@@ -3,10 +3,10 @@ use <MCAD/array/along_curve.scad>
 use <MCAD/shapes/2Dshapes.scad>
 include <MCAD/units/metric.scad>
 
-fork_od = 82;
-fork_id = 69;
+fork_od = 81.5;
+fork_id = 69.8;
 fork_thickness = 7.86;
-wall_thickness = 2.3;
+wall_thickness = 2;
 
 hinge_od = 8;
 
