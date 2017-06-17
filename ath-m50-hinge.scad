@@ -24,7 +24,7 @@ center_gap = 14;
 wedge_dimensions_z0 = [4, 2, 3];
 
 /* wedge dimensions on y=0 plane */
-wedge_dimensions_y0 = [4, 3, 3];
+wedge_dimensions_y0 = [5, 4, 3];
 
 
 $fs = 0.4;
